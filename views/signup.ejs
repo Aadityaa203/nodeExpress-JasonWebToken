@@ -15,7 +15,7 @@
         const emailError = document.querySelector(".email.error");
         const passwordError = document.querySelector(".password.error");
 
-        form.addEventListener("submit", async (e) =>{
+        form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             // reset the errors
@@ -31,19 +31,19 @@
                 const res = await fetch("/signup", {
                     method: "POST",
                     body: JSON.stringify({ email, password }),
-                    headers: { "Content-Type": "application/json"}
+                    headers: { "Content-Type": "application/json" }
                 });
 
                 const data = await res.json();
                 console.log(data);
-                if(data.errors){
+                if (data.errors) {
                     emailError.textContent = data.errors.email; //display error in dom
                     passwordError.textContent = data.errors.password;//display error in dom
                 }
-                if(data.user){
+                if (data.user) {
                     location.assign("/") //takes to the main page after good signup
                 }
-                
+
             } catch (err) {
                 console.log(err)
             }
